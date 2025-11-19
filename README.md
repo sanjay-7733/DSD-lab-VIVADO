@@ -855,3 +855,67 @@ endmodule
 <img width="917" height="617" alt="Screenshot 2025-11-19 161801" src="https://github.com/user-attachments/assets/77c533be-1bfb-4deb-b817-3359008878f2" />
 <img width="715" height="505" alt="image" src="https://github.com/user-attachments/assets/9635ee6a-d328-47ed-9951-21c74ee1561f" />
 
+/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+18.Counter
+CODE:-
+<pre>  
+`timescale 1ns / 1ps
+module t_ff(
+input t,
+input clk,
+input reset,
+output reg q
+    );
+    always @(posedge clk or posedge reset) begin
+    if(reset)
+    q<=1'b0;
+    else if(t)
+    q<=~q;
+    end 
+    
+endmodule
+
+module Counter(
+input clk, reset, output [2:0]q
+    );
+ wire t0,t1,t2;
+    assign t0=~q[1];
+    assign t1=1;
+    assign t2=q[1];
+    
+     t_ff ff0(t0,clk,reset,q[0]);
+    t_ff ff1(t1,clk,reset,q[1]);
+     t_ff ff2(t2,clk,reset,q[2]);   
+endmodule
+</pre>
+Test bench code:-
+<pre>
+`timescale 1ns / 1ps
+module Counter_tb(
+
+    );
+     reg clk,reset;
+    wire [2:0]q;
+    
+    Counter uut(clk,reset,q);
+    initial
+    begin
+    clk=0;
+    #5
+    forever #5 clk=~clk;
+    end
+    
+    initial 
+    begin
+    reset =1;
+    #10
+    reset=0;
+    #50
+    $finish;
+    end
+endmodule
+</pre>
+<img width="946" height="569" alt="Screenshot 2025-11-19 192426" src="https://github.com/user-attachments/assets/347b36e3-db91-4a77-9beb-a9979a595c9e" />
+<img width="573" height="497" alt="image" src="https://github.com/user-attachments/assets/414ddac6-aa52-413d-9643-b04afdc87616" />
+
