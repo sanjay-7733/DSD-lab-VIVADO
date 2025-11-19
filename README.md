@@ -898,7 +898,7 @@ module Counter_tb(
      reg clk,reset;
     wire [2:0]q;
     
-    Counter uut(clk,reset,q);
+    Counter dut(clk,reset,q);
     initial
     begin
     clk=0;
