@@ -44,3 +44,4 @@ module All_gates_tb(
     end
 endmodule
 </pre>
+<img width="864" height="627" alt="Screenshot 2025-11-13 172811" src="https://github.com/user-attachments/assets/8b3333f0-ae7a-440d-85ab-eafadcba3214" />
